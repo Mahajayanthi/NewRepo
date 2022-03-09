@@ -18,12 +18,7 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
   stages:
-  - task: DotNetCoreCLI@2
-  displayName: 'dotnet publish'
+- task: DownloadPipelineArtifact@2
   inputs:
-    command: publish
-    publishWebProjects: false
-    projects: '**/*.csproj'
-    arguments: '-o testpath'
-    zipAfterPublish: false
-    modifyOutputPath: true
+    buildType: 'current'
+    targetPath: '$(Pipeline.Workspace)'
